@@ -1,5 +1,5 @@
 FROM alpine/java:22-jdk
 WORKDIR /app
-COPY target/*.jar app.jar
+COPY target/backend-1.0.0.jar app.jar
 EXPOSE 8080
 ENTRYPOINT ["java", "-jar", "app.jar"]

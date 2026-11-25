@@ -3,7 +3,7 @@ pipeline {
 
     environment {
         IMAGE_NAME    = 'backend-app'
-        REGISTRY_REPO = 'hamzanajj/backend-app'   // your private Docker Hub repo
+        REGISTRY_REPO = 'hamzanajj/backend-app'
         NETWORK       = 'devops-net'
         DB_NAME       = 'test_db'
         DB_PASSWORD   = 'root'
@@ -19,18 +19,14 @@ pipeline {
 
         stage('Build & Test Maven') {
             steps {
-                dir('backend') {
-                    sh 'mvn clean test'
-                    sh 'mvn package -DskipTests'
-                }
+                sh 'mvn clean test'
+                sh 'mvn package -DskipTests'
             }
         }
 
         stage('Docker Build') {
             steps {
-                dir('backend') {
-                    sh 'docker build -t $IMAGE_NAME:latest .'
-                }
+                sh 'docker build -t $IMAGE_NAME:latest .'
             }
         }
 
